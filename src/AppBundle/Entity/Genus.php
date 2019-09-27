@@ -70,6 +70,17 @@ class Genus
         $this->name = $name;
     }
 
+    public function setOutOnAFamilyJourney($str)
+    {
+        $this->funFact = $this->name.' - '.$str;
+    }
+
+    public function getOutOnAFamilyJourney()
+    {
+        return $this->funFact;
+    }
+
+
     /**
      * @return SubFamily
      */
