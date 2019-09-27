@@ -9,8 +9,12 @@
 namespace AppBundle\Form;
 
 
+use AppBundle\Entity\SubFamily;
+use AppBundle\Repository\SubFamilyRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -21,8 +25,12 @@ class GenusFormType extends AbstractType
         $builder
             ->add('name')
             ->add('speciesCount')
-            ->add('subFamily', null, [
+            ->add('subFamily', EntityType::class, [
+                'class' => SubFamily::class,
                 'placeholder' => 'Choose a Sub Family',
+                'query_builder' => function(SubFamilyRepository $repo) {
+                    return $repo->createAlphabetical();
+                }
 
             ])
             ->add('outOnAFamilyJourney')
@@ -32,7 +40,9 @@ class GenusFormType extends AbstractType
                     'No' => false
                 ]
             ])
-            ->add('firstDiscoveredAt')
+            ->add('firstDiscoveredAt', DateType::class, [
+                'widget' => 'single_text'
+            ])
             ->add('funFact');
     }
 
