@@ -45,7 +45,7 @@ class GenusFormType extends AbstractType
                 'attr' => [
                     'class' => 'js-date-picker'
                 ],
-                'html5' => false
+                'html5' => true
             ])
             ->add('funFact');
     }
