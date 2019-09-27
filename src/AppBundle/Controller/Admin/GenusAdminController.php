@@ -34,13 +34,13 @@ class GenusAdminController extends Controller
         $form = $this->createForm(GenusFormType::class);
         $form->handleRequest($request);
 
-        if(!$form->isEmpty()){
-            #dump($form->getData());die;
-        }
-
-        #if ($form->isSubmitted() && $form->isValid()) {
+        #if(!$form->isEmpty()){
             #dump($form->getData());die;
         #}
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            dump($form->getData());die;
+        }
 
         return $this->render('admin/genus/new.html.twig',[
             'genusForm' => $form->createView()

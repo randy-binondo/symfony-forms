@@ -45,6 +45,14 @@ class Genus
     private $isPublished = true;
 
     /**
+     * @return mixed
+     */
+    public function getisPublished()
+    {
+        return $this->isPublished;
+    }
+
+    /**
      * @ORM\Column(type="date")
      */
     private $firstDiscoveredAt;
